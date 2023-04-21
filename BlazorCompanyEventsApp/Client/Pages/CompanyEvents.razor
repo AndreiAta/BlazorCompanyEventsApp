@@ -1,5 +1,57 @@
-﻿<h3>CompanyEvents</h3>
+﻿@page "/companyevents"
+@using BlazorCompanyEventsApp.Shared
+@inject NavigationManager UriHelper
+@inject HttpClient Http
+
+<PageTitle>Events</PageTitle>
+
+<h1>Company Events</h1>
+
+@if (events == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var companyEvent in events)
+            {
+                        <tr>
+                            <td>@companyEvent.Name</td>
+                            <td>@companyEvent.Description</td>
+                            <td>@companyEvent.DateAndTime</td>
+                            <td><button class="btn btn-primary" @onclick="(() => RegisterForEvent(companyEvent))">Register</button></td>
+                            <td><button class="btn btn-primary" @onclick="(() => DetailsOfEvent(companyEvent))">Details</button></td>
+                        </tr>
+            }
+            </tbody>
+        </table>
+}
 
 @code {
+    private CompanyEvent[]? events;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        events = await Http.GetFromJsonAsync<CompanyEvent[]>("/api/companyevents");
+    }
+
+    private void RegisterForEvent(CompanyEvent companyEvent)
+    {
+        UriHelper.NavigateTo($"eventRegistration/{companyEvent.Name}");
+    }
+
+    private void DetailsOfEvent(CompanyEvent companyEvent)
+    {
+        
+    }
 }
