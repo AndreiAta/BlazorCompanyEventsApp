@@ -1,4 +1,7 @@
+using BlazorCompanyEventsApp.Server.Data;
+using BlazorCompanyEventsApp.Shared;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CompanyEventContext>(options => options.UseSqlServer(Configuration.GetConnectionString()));
+builder.Services.AddTransient<ICompanyEventRepository, CompanyEventRepository>();
 
 var app = builder.Build();
 

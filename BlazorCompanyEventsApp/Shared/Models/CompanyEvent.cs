@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorCompanyEventsApp.Shared;
+namespace BlazorCompanyEventsApp.Shared.Models;
 
 [Serializable]
 public class CompanyEvent
 {
     [Key]
-    public Guid Id { get; set; }
+    public int Id { get; set; }
 
     [Required]
     public string Name { get; set; }

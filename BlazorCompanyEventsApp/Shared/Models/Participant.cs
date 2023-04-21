@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BlazorCompanyEventsApp.Shared;
+namespace BlazorCompanyEventsApp.Shared.Models;
 
 [Serializable]
 public class Participant
