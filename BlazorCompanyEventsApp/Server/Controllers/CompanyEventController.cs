@@ -1,4 +1,4 @@
-﻿using BlazorCompanyEventsApp.Shared;
+﻿using BlazorCompanyEventsApp.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorCompanyEventsApp.Server.Controllers;
@@ -7,9 +7,16 @@ namespace BlazorCompanyEventsApp.Server.Controllers;
 [Route("api/[controller]")]
 public class CompanyEventController : ControllerBase
 {
+    private readonly ILogger<CompanyEventController> _logger;
+
+    public CompanyEventController(ILogger<CompanyEventController> logger)
+    {
+        _logger = logger;
+    }
+
     [HttpGet]
     public async Task<IReadOnlyCollection<CompanyEvent>> GetAll()
     {
-
+        return null;
     }
 }
