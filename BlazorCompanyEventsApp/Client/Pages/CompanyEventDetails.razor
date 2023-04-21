@@ -1,0 +1,26 @@
+﻿@page "/companyEventDetails/{CompanyEventName}"
+@    using BlazorCompanyEventsApp.Shared
+
+<h3>Event details for @CompanyEventName</h3>
+
+if(currentEventParticipants.Length == 0)
+{
+<p>There are currently no participants for this event</p>
+}
+else
+{
+
+}
+
+@code {
+    [Parameter]
+    public string? CompanyEventName { get; set; }
+
+    private Participant[]? currentEventParticipants;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        currentEventParticipants = await EventService.GetAllParticipantsForEvent(CompanyEventName);
+    }
+}
