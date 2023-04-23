@@ -38,12 +38,12 @@ else
 }
 
 @code {
-    private CompanyEvent[]? events;
+    private IReadOnlyCollection<CompanyEvent>? events;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        events = await Http.GetFromJsonAsync<CompanyEvent[]>("/api/companyevents");
+        events = await Http.GetFromJsonAsync<IReadOnlyCollection<CompanyEvent>>("/api/companyevents");
     }
 
     private void RegisterForEvent(CompanyEvent companyEvent)
