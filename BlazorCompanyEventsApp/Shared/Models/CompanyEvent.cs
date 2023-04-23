@@ -16,6 +16,4 @@ public class CompanyEvent
 
     [Required]
     public DateTime DateAndTime { get; set; }
-
-    public List<Participant> Participants { get; set; }
 }

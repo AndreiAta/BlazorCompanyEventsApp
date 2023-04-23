@@ -16,4 +16,7 @@ public class Participant
 
     [Required]
     public string PhoneNumber { get; set; }
+
+    [Required]
+    public int CompanyEventId { get; set; }
 }

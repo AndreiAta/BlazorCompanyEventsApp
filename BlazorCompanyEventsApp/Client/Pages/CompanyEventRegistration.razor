@@ -42,7 +42,6 @@
 
     private async void AddParticipantToEvent()
     {
-        currentCompanyEvent.Participants.Add(participant);
         await Http.PutAsJsonAsync($"/api/companyevent/", currentCompanyEvent);
     }
 }
