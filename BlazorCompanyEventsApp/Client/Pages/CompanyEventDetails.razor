@@ -3,22 +3,42 @@
 @using BlazorCompanyEventsApp.Shared.Models;
 @inject HttpClient Http
 
-<h3>Event details for @currentCompanyEvent.Name</h3>
+<PageTitle>Event details for @currentCompanyEvent.Name</PageTitle>
+<h2>@currentCompanyEvent.Description</h2>
+<h3>Date for the event: @currentCompanyEvent.DateAndTime.ToShortDateString()</h3>
 
-if(currentEventParticipants.Length == 0)
+@if(currentEventParticipants.Count() == 0)
 {
-<p>There are currently no participants for this event</p>
+    <p>There are currently no participants for this event</p>
 }
 else
 {
-
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var participant in currentEventParticipants)
+            {
+                <tr>
+                    <td>@participant.FullName</td>
+                    <td>@participant.Email</td>
+                    <td>@participant.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @code {
     [Parameter]
     public int CompanyEventId { get; set; }
 
-    private Participant[]? currentEventParticipants;
+    private IReadOnlyCollection<Participant> currentEventParticipants;
 
     private CompanyEvent? currentCompanyEvent;
 
@@ -26,5 +46,6 @@ else
     {
         await base.OnInitializedAsync();
         currentCompanyEvent = await Http.GetFromJsonAsync<CompanyEvent>($"/api/companyevent/{CompanyEventId}");
+        currentEventParticipants = await Http.GetFromJsonAsync<IReadOnlyCollection<Participant>>($"/api/participant/{CompanyEventId}");
     }
 }

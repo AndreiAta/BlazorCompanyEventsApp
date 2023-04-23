@@ -16,9 +16,9 @@ public class ParticipantController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IReadOnlyCollection<Participant>> GetParticipantsForEvent(int id)
+    public async Task<IReadOnlyCollection<Participant>> GetParticipantsForEvent(int companyEventId)
     {
-        return await _participantRepository.GetParticipantsByCompanyEventId(id);
+        return await _participantRepository.GetParticipantsByCompanyEventId(companyEventId);
     }
 
     [HttpPost]
