@@ -15,10 +15,10 @@ public class ParticipantController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet]
-    public async Task<IReadOnlyCollection<Participant>> GetParticipantsForEvent(int companyEventId)
+    [HttpGet("{id}")]
+    public async Task<IReadOnlyCollection<Participant>> GetParticipantsForEvent(int id)
     {
-        return await _participantRepository.GetParticipantsByCompanyEventId(companyEventId);
+        return await _participantRepository.GetParticipantsByCompanyEventId(id);
     }
 
     [HttpPost]

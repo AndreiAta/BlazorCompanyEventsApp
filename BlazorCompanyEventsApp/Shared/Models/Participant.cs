@@ -5,6 +5,11 @@ namespace BlazorCompanyEventsApp.Shared.Models;
 [Serializable]
 public class Participant
 {
+    public Participant()
+    {
+        
+    }
+
     [Key]
     public Guid Id { get; set; }
 

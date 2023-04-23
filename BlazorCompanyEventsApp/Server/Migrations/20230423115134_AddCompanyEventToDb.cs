@@ -33,9 +33,9 @@ namespace BlazorCompanyEventsApp.Server.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     CompanyEventId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

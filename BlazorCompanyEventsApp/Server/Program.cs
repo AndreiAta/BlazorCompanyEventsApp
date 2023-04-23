@@ -11,6 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CompanyEventDatabase")));
 builder.Services.AddTransient<ICompanyEventRepository, CompanyEventRepository>();
+builder.Services.AddTransient<IParticipantRepository, ParticipantRepository>();
 
 var app = builder.Build();
 
