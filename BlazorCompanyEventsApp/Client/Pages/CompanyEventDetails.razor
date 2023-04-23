@@ -1,8 +1,9 @@
-﻿@page "/companyEventDetails/{CompanyEventName}"
+﻿@page "/companyEventDetails/{CompanyEventId:int}"
 @using BlazorCompanyEventsApp.Shared
 @using BlazorCompanyEventsApp.Shared.Models;
+@inject HttpClient Http
 
-<h3>Event details for @CompanyEventName</h3>
+<h3>Event details for @currentCompanyEvent.Name</h3>
 
 if(currentEventParticipants.Length == 0)
 {
@@ -15,13 +16,15 @@ else
 
 @code {
     [Parameter]
-    public string? CompanyEventName { get; set; }
+    public int CompanyEventId { get; set; }
 
     private Participant[]? currentEventParticipants;
+
+    private CompanyEvent? currentCompanyEvent;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        //currentEventParticipants = await EventService.GetAllParticipantsForEvent(CompanyEventName);
+        currentCompanyEvent = await Http.GetFromJsonAsync<CompanyEvent>($"/api/companyevent/{CompanyEventId}");
     }
 }

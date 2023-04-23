@@ -22,4 +22,16 @@ public class CompanyEventController : ControllerBase
     {
         return await _companyEventRepository.GetCompanyEvents();
     }
+
+    [HttpGet("{id}")]
+    public async Task<CompanyEvent> GetCompanyEvent(int id)
+    {
+        return await _companyEventRepository.GetCompanyEventById(id);
+    }
+
+    [HttpPut]
+    public async Task UpdateCompanyEvent(CompanyEvent companyEvent)
+    {
+        _companyEventRepository.UpdateCompanyEvent(companyEvent);
+    }
 }

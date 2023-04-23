@@ -1,7 +1,8 @@
-﻿@page "/eventRegistration/{CompanyEventName}"
+﻿@page "/eventRegistration/{CompanyEventId:int}"
 @using BlazorCompanyEventsApp.Shared.Models;
+@inject HttpClient Http
 
-<h3>Event Registration for @CompanyEventName</h3>
+<h3>Event Registration for @currentCompanyEvent.Name</h3>
 
 <EditForm Model="@participant" OnValidSubmit="@AddParticipantToEvent">
     <DataAnnotationsValidator />
@@ -27,12 +28,21 @@
 
 @code {
     [Parameter]
-    public string? CompanyEventName { get; set; }
+    public int CompanyEventId { get; set; }
 
     private Participant participant = new();
 
+    private CompanyEvent? currentCompanyEvent;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        currentCompanyEvent = await Http.GetFromJsonAsync<CompanyEvent>($"/api/companyevent/{CompanyEventId}");
+    }
+
     private async void AddParticipantToEvent()
     {
-        
+        currentCompanyEvent.Participants.Add(participant);
+        //await Http.SendJsonAsyn($"/api/companyevent/", currentCompanyEvent);
     }
 }

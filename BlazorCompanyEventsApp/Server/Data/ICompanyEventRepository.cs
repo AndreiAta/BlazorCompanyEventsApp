@@ -8,5 +8,5 @@ public interface ICompanyEventRepository
 
     Task<CompanyEvent> GetCompanyEventById(int id);
 
-    Task<CompanyEvent> UpdateCompanyEvent(CompanyEvent companyEvent);
+    void UpdateCompanyEvent(CompanyEvent companyEvent);
 }

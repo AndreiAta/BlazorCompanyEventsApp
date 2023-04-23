@@ -28,9 +28,8 @@ public class CompanyEventRepository : ICompanyEventRepository
         return companyEvent;
     }    
 
-    public async Task<CompanyEvent> UpdateCompanyEvent(CompanyEvent companyEvent)
+    public void UpdateCompanyEvent(CompanyEvent companyEvent)
     {
-        throw new NotImplementedException();
-
+       _companyEventContext.Entry(companyEvent).State = EntityState.Modified;
     }
 }

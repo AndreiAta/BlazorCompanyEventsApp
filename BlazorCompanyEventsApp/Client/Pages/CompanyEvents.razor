@@ -48,11 +48,11 @@ else
 
     private void RegisterForEvent(CompanyEvent companyEvent)
     {
-        UriHelper.NavigateTo($"eventRegistration/{companyEvent.Name}");
+        UriHelper.NavigateTo($"eventRegistration/{companyEvent.Id}");
     }
 
     private void DetailsOfEvent(CompanyEvent companyEvent)
     {
-        
+        UriHelper.NavigateTo($"eventDetails/{companyEvent.Id}");
     }
 }
