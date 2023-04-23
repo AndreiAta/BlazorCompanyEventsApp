@@ -12,7 +12,7 @@ public class CompanyEventRepository : ICompanyEventRepository
         _companyEventContext = companyEventContext;
     }
 
-    public async Task<IEnumerable<CompanyEvent>> GetCompanyEvents()
+    public async Task<IReadOnlyCollection<CompanyEvent>> GetCompanyEvents()
     {
         return await _companyEventContext.CompanyEvents.ToArrayAsync();
     }
