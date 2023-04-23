@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<CompanyEventContext>(options => options.UseSqlServer(Configuration.GetConnectionString()));
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CompanyEventDatabase")));
 builder.Services.AddTransient<ICompanyEventRepository, CompanyEventRepository>();
 
 var app = builder.Build();
