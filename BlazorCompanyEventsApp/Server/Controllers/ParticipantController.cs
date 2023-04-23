@@ -15,6 +15,12 @@ public class ParticipantController : ControllerBase
         _logger = logger;
     }
 
+    [HttpGet]
+    public async Task<Participant?> GetParticipantByEmail(string email)
+    {
+        return await _participantRepository.GetParticipantByEmail(email);
+    }
+
     [HttpGet("{id}")]
     public async Task<IReadOnlyCollection<Participant>> GetParticipantsForEvent(int companyEventId)
     {
