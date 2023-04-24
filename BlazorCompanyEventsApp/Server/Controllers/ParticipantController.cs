@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorCompanyEventsApp.Server.Controllers;
 
+[ApiController]
+[Route("api/[controller]")]
 public class ParticipantController : ControllerBase
 {
     private readonly ILogger<CompanyEventController> _logger;
