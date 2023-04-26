@@ -25,7 +25,7 @@ public class ParticipantRepository : IParticipantRepository
 
     public async Task<IReadOnlyCollection<Participant>> GetParticipantsByCompanyEventId(int companyEventId)
     {
-        return await _companyEventContext.Participants.Where(p => p.CompanyEventId == companyEventId).ToArrayAsync();
+        return await _companyEventContext.Participants.Where(p => p.CompanyEventId.Contains(companyEventId)).ToArrayAsync();
     }
 
     public async Task UpdateParticipant(Participant participant)

@@ -42,7 +42,7 @@
 
     private async void AddParticipantToEvent()
     {
-        participant.CompanyEventId = CompanyEventId;
+        participant.CompanyEventId.Add(CompanyEventId);
         await Http.PostAsJsonAsync($"/api/participant/", participant);
     }
 }

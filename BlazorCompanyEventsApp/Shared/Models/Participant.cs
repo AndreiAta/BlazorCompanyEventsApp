@@ -10,10 +10,10 @@ public class Participant
 
     [Required]
     public string FullName { get; set; }
-    
+
     [Required]
     public string PhoneNumber { get; set; }
 
     [Required]
-    public int CompanyEventId { get; set; }
+    public List<int> CompanyEventId { get; set; }
 }

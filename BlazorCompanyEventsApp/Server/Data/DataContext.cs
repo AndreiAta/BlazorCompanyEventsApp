@@ -18,7 +18,7 @@ public class DataContext : DbContext
                 new CompanyEvent { Id = 3, Name= "Learning in databases", Description="SQL learning module", DateAndTime = new DateTime(2023, 8, 11)}
             );
         modelBuilder.Entity<Participant>().HasData(
-                new Participant { Email = "andreww0007@gmail.com", FullName = "Andrei Atanasiu", PhoneNumber = "52735600", CompanyEventId = 1 }
+                new Participant { Email = "andreww0007@gmail.com", FullName = "Andrei Atanasiu", PhoneNumber = "52735600", CompanyEventId = new List<int> { 1 } }
             );
     }
 
